@@ -7,7 +7,7 @@ label 'windows'
         }
 
 		stage('Build') {
-            bat 'mvn package shade:shade'
+            bat 'mvn clean package shade:shade'
             def pom = readMavenPom file:'pom.xml'
             env.version = pom.version
         }
@@ -22,7 +22,19 @@ label 'windows'
         }
 
         stage ('Run') {
-	   		 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version}"
+
+       		 print "${params}"
+        	 if ("${params.modes}" == "DRY_RUN") {
+       			 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} DRY_RUN"
+      	     }
+      	     else if("${params.modes}" == "RUN") {
+	  	 	 	 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} RUN"
+      	     }
+      	     else if("${params.modes}" == "FULL_RUN") {
+	  	 		 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} FULL_RUN"
+      	     }
+          
+          	  
           
         }
 
