@@ -172,7 +172,7 @@ public class SampleProject {
 		List<TestExecution> testExecution = apiIntegration.getTestExecution(testExecutionid);
 
 		try {
-			report.sendReportAsExcel(testExecution);
+			report.sendReportAsExcel(testExecution,testExecutionid);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

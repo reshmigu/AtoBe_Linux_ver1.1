@@ -21,18 +21,18 @@ public class XrayReport {
 	private Workbook workbook = null;
 	private Sheet sheet = null;
 	DataFormatter formatter = new DataFormatter();
-	private static final ResourceBundle rb = ResourceBundle.getBundle("application");
-	String testExecutionKey = rb.getString("testexecutionkey");
+
 
 	public XrayReport() {
 		workbook = new XSSFWorkbook();
-		sheet = workbook.createSheet(testExecutionKey + " execution Result");
 	}
 
-	public void sendReportAsExcel(List<TestExecution> testExecution) throws IOException {
+	public void sendReportAsExcel(List<TestExecution> testExecution,String testExecutionKey) throws IOException {
 		System.err.println("EXCEL REPORT");
+		sheet = workbook.createSheet(testExecutionKey + " execution Result");
+
 		int rowCount = 0;
-		rowCount= createRowColumnHeaders(rowCount);
+		rowCount= createRowColumnHeaders(rowCount,testExecutionKey);
 
 		for (TestExecution test : testExecution) {
 			Row row = sheet.createRow(rowCount++);
@@ -51,7 +51,7 @@ public class XrayReport {
 		mail.mailm(testExecutionKey + " execution Result.xlsx");
 	}
 
-	private int createRowColumnHeaders(int rowCount) {
+	private int createRowColumnHeaders(int rowCount,String testExecutionKey) {
 		Row rowHeader = sheet.createRow(rowCount++);
 		Cell cellRowHeader = rowHeader.createCell(0);
 		cellRowHeader.setCellValue("Test Execution Result for "+testExecutionKey);

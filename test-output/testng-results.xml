@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="6924" started-at="2019-07-29T10:01:39Z" finished-at="2019-07-29T10:01:46Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="6924" started-at="2019-07-29T10:01:39Z" finished-at="2019-07-29T10:01:46Z">
+      <class name="com.test.SampleProject">
+        <test-method status="PASS" signature="createIssue()[pri:0, instance:com.test.SampleProject@4ac3c60d]" name="createIssue" duration-ms="2560" started-at="2019-07-29T15:31:39Z" finished-at="2019-07-29T15:31:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createIssue -->
+        <test-method status="PASS" signature="postTestExecution()[pri:1, instance:com.test.SampleProject@4ac3c60d]" name="postTestExecution" duration-ms="91" started-at="2019-07-29T15:31:41Z" finished-at="2019-07-29T15:31:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postTestExecution -->
+        <test-method status="PASS" signature="createEmployee()[pri:2, instance:com.test.SampleProject@4ac3c60d]" name="createEmployee" duration-ms="989" started-at="2019-07-29T15:31:41Z" finished-at="2019-07-29T15:31:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createEmployee -->
+        <test-method status="PASS" signature="updateEmployee()[pri:3, instance:com.test.SampleProject@4ac3c60d]" name="updateEmployee" duration-ms="959" started-at="2019-07-29T15:31:42Z" finished-at="2019-07-29T15:31:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateEmployee -->
+        <test-method status="PASS" signature="deleteEmployee()[pri:4, instance:com.test.SampleProject@4ac3c60d]" name="deleteEmployee" duration-ms="818" started-at="2019-07-29T15:31:43Z" finished-at="2019-07-29T15:31:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteEmployee -->
+        <test-method status="PASS" signature="mailsend()[pri:5, instance:com.test.SampleProject@4ac3c60d]" name="mailsend" duration-ms="1468" started-at="2019-07-29T15:31:44Z" finished-at="2019-07-29T15:31:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mailsend -->
+        <test-method status="PASS" signature="afterAllTest()[pri:0, instance:com.test.SampleProject@4ac3c60d]" name="afterAllTest" is-config="true" duration-ms="762" started-at="2019-07-29T15:31:46Z" finished-at="2019-07-29T15:31:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterAllTest -->
+      </class> <!-- com.test.SampleProject -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
