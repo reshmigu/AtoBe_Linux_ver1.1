@@ -81,4 +81,16 @@ public class XrayAPIIntegration {
 		return  response.getStatusCode();
 		
 	}
+	
+	public String createIssueBug() throws URISyntaxException {
+		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
+		URIBuilder b = new URIBuilder(createIssueUrl);
+		URI u = b.build();
+		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"Bug\",\"description\":\"Bug\",\"issuetype\": {\"name\": \"Bug\"}}}";
+		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
+		request.contentType("application/json");
+		request.body(test);
+		Response response = request.post(createIssueUrl);
+		return response.body().as(ResponseDTO.class).getKey();
+	}
 }

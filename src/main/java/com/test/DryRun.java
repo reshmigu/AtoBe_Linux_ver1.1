@@ -27,21 +27,8 @@ public class DryRun {
 	XrayReport report = new XrayReport();
 
 	@Test(priority = 0)
-	public void createIssue() throws URISyntaxException {
-		String issueType = "Test Execution";
-		testExecutionid=apiIntegration.createIssue(issueType);
-		 Assert.assertNotNull(testExecutionid);
-	}
-	@Test(priority = 1)
-	public void postTestExecution() throws URISyntaxException {
-		int status;
-		status=apiIntegration.postTestExecution(testExecutionid);
-		assertEquals(200, status);
-	}
-	
-	@Test(priority = 2)
 	public void createEmployee() throws URISyntaxException {
-
+		System.out.println("**********test creation dry run");
 		RestAssured.baseURI = "http://dummy.restapiexample.com/api/v1";
 
 		String requestBody = "{\n" + "  \"name\": \"ABC\",\n" + "  \"salary\": \"5000\",\n" + "  \"age\": \"20\"\n"
@@ -58,14 +45,6 @@ public class DryRun {
 		System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
-
-		TestRun testRun = apiIntegration.getTestRun("TP-2",testExecutionid);
-		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
-
 		assertEquals(200, response.getStatusCode());
 
 	}
@@ -73,9 +52,9 @@ public class DryRun {
 	// An update operation will happen if the Request-URI;PUT is idempotent
 	// means if you try to make a request multiple times,
 	// it would result in the same output as it would have no effect.
-	@Test(priority = 3)
+	@Test(priority = 1)
 	public void updateEmployee() throws URISyntaxException {
-
+		System.out.println("**********test creation full run**********");
 		RestAssured.baseURI = "http://dummy.restapiexample.com/api/v1";
 
 		String requestBody = "{\r\n" + " \"name\":\"put_test_employee\",\r\n" + " \"salary\":\"1123\",\r\n"
@@ -94,17 +73,11 @@ public class DryRun {
 		System.out.println(
 				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
 		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
-
-		TestRun testRun = apiIntegration.getTestRun("TP-3",testExecutionid);
-		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
 		assertEquals(200, response.getStatusCode());
 	}
 
 	// it is used to �Delete� any resource specified
-	@Test(priority = 4)
+	@Test(priority = 2)
 	public void deleteEmployee() throws URISyntaxException {
 
 		RestAssured.baseURI = "http://dummy.restapiexample.com/api/v1";
@@ -116,11 +89,6 @@ public class DryRun {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TestRun testRun = apiIntegration.getTestRun("TP-4",testExecutionid);
-		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
-			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
 		System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println(
@@ -152,30 +120,16 @@ public class DryRun {
 	// POJO
 	// @Test
 	public void testDeSerialization() {
-
 		Student student = RestAssured.get("http://www.thomas-bayer.com/restnames/countries.groovy").as(Student.class);
-
 		System.out.println(student.toString());
 		System.out.println("student :" + student.toString());
 		System.out.println("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 3)
 	public void mailsend() {
 		mail test1 = new mail();
 		test1.mailm("test-output//emailable-report.html");
 
-	}
-
-	@AfterSuite
-	public void afterAllTest() {
-		List<TestExecution> testExecution = apiIntegration.getTestExecution(testExecutionid);
-
-		try {
-			report.sendReportAsExcel(testExecution,testExecutionid);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
