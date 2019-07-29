@@ -28,13 +28,16 @@ public class FullRun {
 
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
+		System.out.println("**********test creation full run");
 		String issueType = "Test Execution";
 		testExecutionid=apiIntegration.createIssue(issueType);
 		 Assert.assertNotNull(testExecutionid);
+		 
 	}
 	@Test(priority = 1)
 	public void postTestExecution() throws URISyntaxException {
 		int status;
+		System.out.println("**********test creation full run************");
 		status=apiIntegration.postTestExecution(testExecutionid);
 		assertEquals(200, status);
 	}
@@ -63,8 +66,10 @@ public class FullRun {
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
 
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
+		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")){
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
+			apiIntegration.createIssueBug();
+		}
 
 		assertEquals(200, response.getStatusCode());
 
@@ -98,8 +103,10 @@ public class FullRun {
 		TestRun testRun = apiIntegration.getTestRun("TP-3",testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
+		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")){
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
+			apiIntegration.createIssueBug();
+		}
 		assertEquals(200, response.getStatusCode());
 	}
 
@@ -119,8 +126,11 @@ public class FullRun {
 		TestRun testRun = apiIntegration.getTestRun("TP-4",testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
+		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")){
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
+			apiIntegration.createIssueBug();
+
+		}
 		System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println(
