@@ -1,0 +1,25 @@
+{
+    "code": 0,
+    "data": {
+            "brands" : [
+            {
+                "description": "this is Uniqlo brand",
+                "image_url": "http://i.imgur.com/Q1a32kD.jpg",
+                "category": "Apparels",
+                "name": "Uniqlo",
+                "short_name": "UNQ",
+                "acronym": "UNQ",
+                "id": "101010"              
+            }, {
+                "description": "this is Zara brand",
+                "image_url": "http://i.imgur.com/Q1a32kD.jpg",
+                "category": "Footwear",
+                "name": "Zara",
+                "short_name": "ZR",
+                "acronym": "ZR",
+                "id": "101011"              
+            }
+        ]
+    }
+    
+    }
