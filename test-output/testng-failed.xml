@@ -3,16 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.test.SampleProject">
+      <class name="com.test.FullRun">
         <methods>
-          <include name="postTestExecution"/>
-          <include name="createIssue"/>
           <include name="deleteEmployee"/>
           <include name="afterAllTest"/>
-          <include name="createEmployee"/>
-          <include name="updateEmployee"/>
         </methods>
-      </class> <!-- com.test.SampleProject -->
+      </class> <!-- com.test.FullRun -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

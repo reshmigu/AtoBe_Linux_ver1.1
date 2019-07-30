@@ -1,37 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+<testng-results skipped="0" failed="1" ignored="0" total="6" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="7955" started-at="2019-07-29T12:16:48Z" finished-at="2019-07-29T12:16:55Z">
+  <suite name="Default suite" duration-ms="6706" started-at="2019-07-30T05:35:05Z" finished-at="2019-07-30T05:35:12Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="7955" started-at="2019-07-29T12:16:48Z" finished-at="2019-07-29T12:16:55Z">
+    <test name="Default test" duration-ms="6706" started-at="2019-07-30T05:35:05Z" finished-at="2019-07-30T05:35:12Z">
       <class name="com.test.FullRun">
-        <test-method status="PASS" signature="createIssue()[pri:0, instance:com.test.FullRun@4ac3c60d]" name="createIssue" duration-ms="2597" started-at="2019-07-29T17:46:48Z" finished-at="2019-07-29T17:46:50Z">
+        <test-method status="PASS" signature="createIssue()[pri:0, instance:com.test.FullRun@7722c3c3]" name="createIssue" duration-ms="1705" started-at="2019-07-30T11:05:06Z" finished-at="2019-07-30T11:05:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createIssue -->
-        <test-method status="PASS" signature="postTestExecution()[pri:1, instance:com.test.FullRun@4ac3c60d]" name="postTestExecution" duration-ms="106" started-at="2019-07-29T17:46:50Z" finished-at="2019-07-29T17:46:50Z">
+        <test-method status="PASS" signature="postTestExecution()[pri:1, instance:com.test.FullRun@7722c3c3]" name="postTestExecution" duration-ms="75" started-at="2019-07-30T11:05:07Z" finished-at="2019-07-30T11:05:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postTestExecution -->
-        <test-method status="PASS" signature="createEmployee()[pri:2, instance:com.test.FullRun@4ac3c60d]" name="createEmployee" duration-ms="969" started-at="2019-07-29T17:46:50Z" finished-at="2019-07-29T17:46:51Z">
+        <test-method status="PASS" signature="createEmployee()[pri:2, instance:com.test.FullRun@7722c3c3]" name="createEmployee" duration-ms="960" started-at="2019-07-30T11:05:07Z" finished-at="2019-07-30T11:05:08Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createEmployee -->
-        <test-method status="PASS" signature="updateEmployee()[pri:3, instance:com.test.FullRun@4ac3c60d]" name="updateEmployee" duration-ms="816" started-at="2019-07-29T17:46:51Z" finished-at="2019-07-29T17:46:52Z">
+        <test-method status="PASS" signature="updateEmployee()[pri:3, instance:com.test.FullRun@7722c3c3]" name="updateEmployee" duration-ms="839" started-at="2019-07-30T11:05:08Z" finished-at="2019-07-30T11:05:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- updateEmployee -->
-        <test-method status="PASS" signature="deleteEmployee()[pri:4, instance:com.test.FullRun@4ac3c60d]" name="deleteEmployee" duration-ms="857" started-at="2019-07-29T17:46:52Z" finished-at="2019-07-29T17:46:53Z">
+        <test-method status="FAIL" signature="deleteEmployee()[pri:4, instance:com.test.FullRun@7722c3c3]" name="deleteEmployee" duration-ms="937" started-at="2019-07-30T11:05:09Z" finished-at="2019-07-30T11:05:10Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [200] but found [400]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [200] but found [400]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:134)
+	at org.testng.Assert.assertEquals(Assert.java:115)
+	at org.testng.Assert.assertEquals(Assert.java:388)
+	at org.testng.Assert.assertEquals(Assert.java:398)
+	at com.test.FullRun.deleteEmployee(FullRun.java:138)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteEmployee -->
-        <test-method status="PASS" signature="mailsend()[pri:5, instance:com.test.FullRun@4ac3c60d]" name="mailsend" duration-ms="2569" started-at="2019-07-29T17:46:53Z" finished-at="2019-07-29T17:46:55Z">
+        <test-method status="PASS" signature="mailsend()[pri:5, instance:com.test.FullRun@7722c3c3]" name="mailsend" duration-ms="2164" started-at="2019-07-30T11:05:10Z" finished-at="2019-07-30T11:05:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- mailsend -->
-        <test-method status="PASS" signature="afterAllTest()[pri:0, instance:com.test.FullRun@4ac3c60d]" name="afterAllTest" is-config="true" duration-ms="1654" started-at="2019-07-29T17:46:56Z" finished-at="2019-07-29T17:46:57Z">
+        <test-method status="PASS" signature="afterAllTest()[pri:0, instance:com.test.FullRun@7722c3c3]" name="afterAllTest" is-config="true" duration-ms="1811" started-at="2019-07-30T11:05:12Z" finished-at="2019-07-30T11:05:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterAllTest -->

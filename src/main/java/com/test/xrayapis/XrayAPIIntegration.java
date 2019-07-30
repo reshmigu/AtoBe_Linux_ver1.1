@@ -60,7 +60,7 @@ public class XrayAPIIntegration {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"AtoBe Test Run\",\"description\":\"AtoBe Test Run\",\"issuetype\": {\"name\": \"Test Execution\"}}}";
+		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"AtoBe Test Run\",\"description\":\"AtoBe Automated Test Run\",\"issuetype\": {\"name\": \"Test Execution\"}}}";
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);
@@ -86,7 +86,7 @@ public class XrayAPIIntegration {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"Bug\",\"description\":\"Bug\",\"issuetype\": {\"name\": \"Bug\"}}}";
+		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"Bug\",\"description\":\"Automated Bug Creation\",\"issuetype\": {\"name\": \"Bug\"}}}";
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);

@@ -124,9 +124,9 @@ public class FullRun {
 			e.printStackTrace();
 		}
 		TestRun testRun = apiIntegration.getTestRun("TP-4",testExecutionid);
-		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
+		if (response.getStatusCode() == 400 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")){
+		else if (response.getStatusCode() != 400 && !testRun.getStatus().equals("FAIL")){
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
 			apiIntegration.createIssueBug();
 
@@ -135,7 +135,7 @@ public class FullRun {
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println(
 				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
-
+		assertEquals(400, response.getStatusCode());
 	}
 
 	// POJO (Plain Old Java Object) and we need to send it to the API call
