@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
@@ -17,18 +18,22 @@ import com.test.xrayapis.XrayAPIIntegration;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;  
 
 public class FullRun {
 	// GET HTTP Protocol which is used to request data from a specific resource
 
 	// POST methods---is used to send data to a server to create the resource.
+		  private static final Logger LOGGER = LogManager.getLogger(FullRun.class);
+
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
 
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
-		System.out.println("**********test creation full run");
 		String issueType = "Test Execution";
 		testExecutionid=apiIntegration.createIssue(issueType);
 		 Assert.assertNotNull(testExecutionid);
@@ -37,7 +42,6 @@ public class FullRun {
 	@Test(priority = 1)
 	public void postTestExecution() throws URISyntaxException {
 		int status;
-		System.out.println("**********test creation full run************");
 		status=apiIntegration.postTestExecution(testExecutionid);
 		assertEquals(200, status);
 	}
@@ -57,10 +61,13 @@ public class FullRun {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+/*
 		System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));*/
 
 		TestRun testRun = apiIntegration.getTestRun("TP-2",testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
@@ -93,12 +100,18 @@ public class FullRun {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
+		
+		/*
+		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
 		System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println(
 				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));*/
 
 		TestRun testRun = apiIntegration.getTestRun("TP-3",testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
@@ -131,11 +144,16 @@ public class FullRun {
 			apiIntegration.createIssueBug();
 
 		}
-		System.out.println("Response :" + response.asString());
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
+
+		
+		/*System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
 		System.out.println(
 				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
-
+*/
 	}
 
 	// POJO (Plain Old Java Object) and we need to send it to the API call
@@ -151,10 +169,16 @@ public class FullRun {
 
 		response = RestAssured.given().contentType("application/json").body(student).when()
 				.post("http://www.thomas-bayer.com/restnames/countries.groovy");
-		System.out.println("Response :" + response.asString());
+		
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
+
+		
+		/*System.out.println("Response :" + response.asString());
 		System.out.println("Status Code :" + response.getStatusCode());
+		System.out.println("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));*/
 		assertEquals(200, response.getStatusCode());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
 
 	}
 
@@ -165,9 +189,14 @@ public class FullRun {
 
 		Student student = RestAssured.get("http://www.thomas-bayer.com/restnames/countries.groovy").as(Student.class);
 
-		System.out.println(student.toString());
+		LOGGER.info(student.toString());
+		LOGGER.info("student :" + student.toString());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+
+		
+		/*System.out.println(student.toString());
 		System.out.println("student :" + student.toString());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+		System.out.println("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));*/
 	}
 
 	@Test(priority = 5)

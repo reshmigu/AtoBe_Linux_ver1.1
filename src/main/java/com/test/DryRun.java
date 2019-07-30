@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
@@ -22,13 +24,14 @@ public class DryRun {
 	// GET HTTP Protocol which is used to request data from a specific resource
 
 	// POST methods---is used to send data to a server to create the resource.
+	  private static final Logger LOGGER = LogManager.getLogger(FullRun.class);
+
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
 
 	@Test(priority = 0)
 	public void createEmployee() throws URISyntaxException {
-		System.out.println("**********test creation dry run");
 		RestAssured.baseURI = "http://dummy.restapiexample.com/api/v1";
 
 		String requestBody = "{\n" + "  \"name\": \"ABC\",\n" + "  \"salary\": \"5000\",\n" + "  \"age\": \"20\"\n"
@@ -42,9 +45,9 @@ public class DryRun {
 			e.printStackTrace();
 		}
 
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
 		assertEquals(200, response.getStatusCode());
 
 	}
@@ -54,7 +57,6 @@ public class DryRun {
 	// it would result in the same output as it would have no effect.
 	@Test(priority = 1)
 	public void updateEmployee() throws URISyntaxException {
-		System.out.println("**********test creation full run**********");
 		RestAssured.baseURI = "http://dummy.restapiexample.com/api/v1";
 
 		String requestBody = "{\r\n" + " \"name\":\"put_test_employee\",\r\n" + " \"salary\":\"1123\",\r\n"
@@ -68,11 +70,10 @@ public class DryRun {
 			e.printStackTrace();
 		}
 
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println(
-				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
 		assertEquals(200, response.getStatusCode());
 	}
 
@@ -89,11 +90,11 @@ public class DryRun {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println(
-				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
 
+		
 	}
 
 	// POJO (Plain Old Java Object) and we need to send it to the API call
@@ -109,10 +110,11 @@ public class DryRun {
 
 		response = RestAssured.given().contentType("application/json").body(student).when()
 				.post("http://www.thomas-bayer.com/restnames/countries.groovy");
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
+
 		assertEquals(200, response.getStatusCode());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
 
 	}
 
@@ -121,9 +123,10 @@ public class DryRun {
 	// @Test
 	public void testDeSerialization() {
 		Student student = RestAssured.get("http://www.thomas-bayer.com/restnames/countries.groovy").as(Student.class);
-		System.out.println(student.toString());
-		System.out.println("student :" + student.toString());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+		LOGGER.info(student.toString());
+		LOGGER.info("student :" + student.toString());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+
 	}
 
 	@Test(priority = 3)

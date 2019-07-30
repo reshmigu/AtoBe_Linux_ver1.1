@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
@@ -22,6 +24,8 @@ public class Run {
 	// GET HTTP Protocol which is used to request data from a specific resource
 
 	// POST methods---is used to send data to a server to create the resource.
+	private static final Logger LOGGER = LogManager.getLogger(FullRun.class);
+
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
@@ -29,16 +33,17 @@ public class Run {
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
 		String issueType = "Test Execution";
-		testExecutionid=apiIntegration.createIssue(issueType);
-		 Assert.assertNotNull(testExecutionid);
+		testExecutionid = apiIntegration.createIssue(issueType);
+		Assert.assertNotNull(testExecutionid);
 	}
+
 	@Test(priority = 1)
 	public void postTestExecution() throws URISyntaxException {
 		int status;
-		status=apiIntegration.postTestExecution(testExecutionid);
+		status = apiIntegration.postTestExecution(testExecutionid);
 		assertEquals(200, status);
 	}
-	
+
 	@Test(priority = 2)
 	public void createEmployee() throws URISyntaxException {
 
@@ -55,11 +60,11 @@ public class Run {
 			e.printStackTrace();
 		}
 
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
 
-		TestRun testRun = apiIntegration.getTestRun("TP-2",testExecutionid);
+		TestRun testRun = apiIntegration.getTestRun("TP-2", testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
 
@@ -88,14 +93,11 @@ public class Run {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println(
-				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
-		System.out.println("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
-
-		TestRun testRun = apiIntegration.getTestRun("TP-3",testExecutionid);
+		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
+		TestRun testRun = apiIntegration.getTestRun("TP-3", testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
 		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
@@ -116,15 +118,14 @@ public class Run {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TestRun testRun = apiIntegration.getTestRun("TP-4",testExecutionid);
+		TestRun testRun = apiIntegration.getTestRun("TP-4", testExecutionid);
 		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
 		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
-		System.out.println(
-				"Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
 
 	}
 
@@ -141,10 +142,10 @@ public class Run {
 
 		response = RestAssured.given().contentType("application/json").body(student).when()
 				.post("http://www.thomas-bayer.com/restnames/countries.groovy");
-		System.out.println("Response :" + response.asString());
-		System.out.println("Status Code :" + response.getStatusCode());
+		LOGGER.info("Response :" + response.asString());
+		LOGGER.info("Status Code :" + response.getStatusCode());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
 		assertEquals(200, response.getStatusCode());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + response.asString().contains("Belgium"));
 
 	}
 
@@ -155,9 +156,10 @@ public class Run {
 
 		Student student = RestAssured.get("http://www.thomas-bayer.com/restnames/countries.groovy").as(Student.class);
 
-		System.out.println(student.toString());
-		System.out.println("student :" + student.toString());
-		System.out.println("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+		LOGGER.info(student.toString());
+		LOGGER.info("student :" + student.toString());
+		LOGGER.info("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
+
 	}
 
 	@Test(priority = 5)
@@ -172,7 +174,7 @@ public class Run {
 		List<TestExecution> testExecution = apiIntegration.getTestExecution(testExecutionid);
 
 		try {
-			report.sendReportAsExcel(testExecution,testExecutionid);
+			report.sendReportAsExcel(testExecution, testExecutionid);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
