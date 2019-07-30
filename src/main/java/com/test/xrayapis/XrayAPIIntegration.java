@@ -22,7 +22,6 @@ public class XrayAPIIntegration {
 	private static final String CREATE_ISSUE_URL = rb.getString("create.issue");
 	private static final String CREATE_TEST_EXECUTION_URL = rb.getString("testexecution.get");
 
-
 	public List<TestExecution> getTestExecution(String testexecutionkey) {
 		String exc = TEST_EXECUTION_GET_URL;
 		String api = exc.replace("execid", testexecutionkey);
@@ -44,7 +43,7 @@ public class XrayAPIIntegration {
 		return response.getBody().prettyPrint();
 	}
 
-	public TestRun getTestRun(String testKey,String testexecutionkey) throws URISyntaxException {
+	public TestRun getTestRun(String testKey, String testexecutionkey) throws URISyntaxException {
 		String testRunGetUrl = TEST_RUN_GET_URL;
 		URIBuilder b = new URIBuilder(BASE_URL + testRunGetUrl);
 		b.addParameter("testIssueKey", testKey);
@@ -60,17 +59,17 @@ public class XrayAPIIntegration {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"AtoBe Test Run\",\"description\":\"AtoBe Test Run\",\"issuetype\": {\"name\": \"Test Execution\"}}}";
+		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"AtoBe Test Run\",\"description\":\"AtoBe Automated Test Run\",\"issuetype\": {\"name\": \"Test Execution\"}}}";
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);
 		Response response = request.post(createIssueUrl);
 		return response.body().as(ResponseDTO.class).getKey();
 	}
-	
-	public int postTestExecution(String executionKey) throws URISyntaxException{
-		String createExecutionUrl=BASE_URL+CREATE_TEST_EXECUTION_URL ;
-		String api = createExecutionUrl.replace("execid", executionKey);	
+
+	public int postTestExecution(String executionKey) throws URISyntaxException {
+		String createExecutionUrl = BASE_URL + CREATE_TEST_EXECUTION_URL;
+		String api = createExecutionUrl.replace("execid", executionKey);
 		URIBuilder b = new URIBuilder(api);
 		URI u = b.build();
 		String test = "{\"add\": [ \"TP-3\", \"TP-2\",  \"TP-4\"]}";
@@ -78,19 +77,19 @@ public class XrayAPIIntegration {
 		request.contentType("application/json");
 		request.body(test);
 		Response response = request.post(api);
-		return  response.getStatusCode();
-		
+		return response.getStatusCode();
+
 	}
-	
-	public String createIssueBug() throws URISyntaxException {
+
+	public ResponseDTO createIssueBug(String projectKey,String testCaseKey) throws URISyntaxException {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"Bug\",\"description\":\"Bug\",\"issuetype\": {\"name\": \"Bug\"}}}";
+		String test =String.format( "{\"fields\":{\"project\":{\"key\":\"%s\" },\"summary\":\"test bug summary\",\"description\":\"test bug description\",\"issuetype\":{\"name\":\"Bug\"}},\"update\":{\"issuelinks\":[{\"add\":{\"type\":{\"name\":\"Blocks\",\"inward\":\"is blocked by\",\"outward\":\"blocks\"},\"outwardIssue\":{\"key\":\"%s\" }}}]}}",projectKey,testCaseKey);
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);
 		Response response = request.post(createIssueUrl);
-		return response.body().as(ResponseDTO.class).getKey();
+		return response.body().as(ResponseDTO.class);
 	}
 }
