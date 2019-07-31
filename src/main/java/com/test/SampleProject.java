@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
+import com.test.xrayapis.CreateIssueDTO;
 import com.test.xrayapis.TestExecution;
 import com.test.xrayapis.TestRun;
 import com.test.xrayapis.XrayAPIIntegration;
@@ -28,8 +29,11 @@ public class SampleProject {
 
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
-		String issueType = "Test Execution";
-		testExecutionid=apiIntegration.createIssue(issueType);
+		CreateIssueDTO createIssueDTO=new CreateIssueDTO();
+		createIssueDTO.setDescription("AtoBe Automated Test Run");
+		createIssueDTO.setKey("TP");
+		createIssueDTO.setName("Test Execution");
+		createIssueDTO.setSummary("AtoBe Test Run");		testExecutionid = apiIntegration.createIssue(createIssueDTO);
 		 Assert.assertNotNull(testExecutionid);
 	}
 	@Test(priority = 1)

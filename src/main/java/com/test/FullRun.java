@@ -10,14 +10,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
+import com.test.xrayapis.CreateIssueDTO;
 import com.test.xrayapis.TestExecution;
 import com.test.xrayapis.TestRun;
 import com.test.xrayapis.XrayAPIIntegration;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -30,11 +29,15 @@ public class FullRun {
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
-
+	CreateIssueDTO createIssueDTO = null;
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
-		String issueType = "Test Execution";
-		testExecutionid = apiIntegration.createIssue(issueType);
+		createIssueDTO=new CreateIssueDTO();
+		createIssueDTO.setDescription("AtoBe Automated Test Run");
+		createIssueDTO.setKey("TP");
+		createIssueDTO.setName("Test Execution");
+		createIssueDTO.setSummary("AtoBe Test Run");
+		testExecutionid = apiIntegration.createIssue(createIssueDTO);
 		Assert.assertNotNull(testExecutionid);
 
 	}

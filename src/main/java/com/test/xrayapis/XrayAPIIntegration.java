@@ -55,11 +55,11 @@ public class XrayAPIIntegration {
 		return null;
 	}
 
-	public String createIssue(String issueType) throws URISyntaxException {
+	public String createIssue(CreateIssueDTO createIssueDTO) throws URISyntaxException {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test = "{\"fields\": {\"project\":{\"key\": \"TP\"},\"summary\": \"AtoBe Test Run\",\"description\":\"AtoBe Automated Test Run\",\"issuetype\": {\"name\": \"Test Execution\"}}}";
+		String test = String.format("{\"fields\": {\"project\":{\"key\": \"%s\"},\"summary\": \"%s\",\"description\":\"%s\",\"issuetype\": {\"name\": \"%s\"}}}",createIssueDTO.getKey(),createIssueDTO.getSummary(),createIssueDTO.getDescription(),createIssueDTO.getName());
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);

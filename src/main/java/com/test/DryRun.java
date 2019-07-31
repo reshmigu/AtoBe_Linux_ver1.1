@@ -24,7 +24,7 @@ public class DryRun {
 	// GET HTTP Protocol which is used to request data from a specific resource
 
 	// POST methods---is used to send data to a server to create the resource.
-	  private static final Logger LOGGER = LogManager.getLogger(FullRun.class);
+	private static final Logger LOGGER = LogManager.getLogger(FullRun.class);
 
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
@@ -94,7 +94,6 @@ public class DryRun {
 		LOGGER.info("Status Code :" + response.getStatusCode());
 		LOGGER.info("Does Reponse contains 'put_test_employee'? :" + response.asString().contains("put_test_employee"));
 
-		
 	}
 
 	// POJO (Plain Old Java Object) and we need to send it to the API call

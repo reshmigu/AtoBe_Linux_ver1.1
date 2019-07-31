@@ -13,7 +13,7 @@ public class TestRun {
 	private String assignee;
 	private String executedBy;
 	private long duration;
-
+	private String definition;
 	private Date startedOn;
 	private Date finishedOn;
 	private Date startedOnIso;
@@ -24,6 +24,14 @@ public class TestRun {
 	private String[] testEnvironments;
 	private String[] fixVersions;
 
+
+	public String getDefinition() {
+		return definition;
+	}
+
+	public void setDefinition(String definition) {
+		this.definition = definition;
+	}
 	public int getId() {
 		return id;
 	}
