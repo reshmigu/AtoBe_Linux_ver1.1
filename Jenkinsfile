@@ -38,7 +38,7 @@ node (label: 'windows'){
         emailext mimeType: 'text/html',
 	attachLog :true,
 	compressLog : true,
-        body: '${FILE, path="test-output/emailable-report.html"}',
+        body: '${FILE, path="AtoBeV2/test-output/emailable-report.html"}',
         subject: currentBuild.currentResult + " : " + env.JOB_NAME,
         to: 'dhananjaya.k@thinkpalm.com'
           	  
