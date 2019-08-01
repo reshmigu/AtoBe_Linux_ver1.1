@@ -42,7 +42,9 @@ node (label: 'windows'){
         subject: currentBuild.currentResult + " : " + env.JOB_NAME,
         to: 'dhananjaya.k@thinkpalm.com'
           	  
-          
+          env.abc=bat "docker container ls -lq"
+	  bat "docker container export -o restassured.tar ${env.abc}" 
+	  print env.abc 	
         }
 
     }
