@@ -1,8 +1,13 @@
 FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
-RUN apt-get update
-RUN apt-get install ttf-mscorefonts-installer
+
+ADD arial.ttf /
+# refresh system font cache
+RUN fc-cache -f -v
+
+# refresh matplotlib font cache
+RUN rm -fr ~/.cache/matplotlib
 ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
