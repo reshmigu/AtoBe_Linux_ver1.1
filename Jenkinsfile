@@ -41,7 +41,7 @@ node (label: 'windows'){
 	compressLog : true,
         body: '${FILE, path="test-output/emailable-report.html"}',
         subject: currentBuild.currentResult + " : " + env.JOB_NAME,
-        to: 'dhananjaya.k@thinkpalm.com'
+        to: 'reshmi.g@thinkpalm.com,nasia.t@thinkpalm.com'
           	  
 	   	
         }
