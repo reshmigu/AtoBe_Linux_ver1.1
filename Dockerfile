@@ -6,6 +6,7 @@ ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
 ADD MailCredentials.xlsx /
+ADD IssueReport.jrxml /
 ADD testng.xml /
 ENTRYPOINT ["java", "-cp", ".:*", "com.test.AtoBeMainClass"]
 #CMD exec java -cp ./* org.testng.TestNG -testclass com.test.SampleProject
