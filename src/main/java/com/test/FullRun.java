@@ -183,12 +183,12 @@ public class FullRun {
 		LOGGER.info("Does Reponse contains 'Country-Name'? :" + student.toString().contains("Belgium"));
 	}
 
-	@Test(priority = 5)
+	/*@Test(priority = 5)
 	public void mailsend() {
 		mail test1 = new mail();
 		test1.mailm("test-output//emailable-report.html");
 
-	}
+	}*/
 
 	@AfterSuite
 	public void afterAllTest() throws JRException, URISyntaxException {
