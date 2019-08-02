@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IssueReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53c7443d-2d3a-424c-a8b7-7970b6199afa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="31efb09d-f8e8-4ea6-a8fc-90a75aebe998">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="testCaseId" class="java.lang.String"/>
+		<field name="testStatus" class="java.lang.String"/>
+		<field name="linkedBugId" class="java.lang.String"/>
+		<field name="testCaseLink" class="java.lang.String"/>
+		<field name="bugLink" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="projectName" class="java.lang.String"/>
+	<parameter name="issueId" class="java.lang.String"/>
+	<parameter name="summary" class="java.lang.String"/>
+	<parameter name="description" class="java.lang.String"/>
+	<parameter name="startedDate" class="java.util.Date"/>
+	<parameter name="endDate" class="java.util.Date"/>
+	<parameter name="BugList" class="net.sf.jasperreports.engine.data.JRAbstractBeanDataSource"/>
+	<parameter name="executedBy" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="assignee" class="java.lang.String"/>
+	<parameter name="totalTestCases" class="java.lang.Integer"/>
+	<parameter name="passCount" class="java.lang.Integer"/>
+	<parameter name="failCount" class="java.lang.Integer"/>
+	<parameter name="bugCount" class="java.lang.Integer"/>
+	<parameter name="issueLink" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="1" y="0" width="559" height="40" uuid="1f510e13-1ff0-4900-a529-8480adb63f14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" isBold="true" isItalic="false" isUnderline="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[JIRA-Xray Test Execution Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="374" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="560" height="360" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
+				<staticText>
+					<reportElement x="30" y="0" width="220" height="20" uuid="7f8ddbc5-b1ec-43da-b19b-2b21fe628b64">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Project Name                                :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="20" width="220" height="20" uuid="bfcd7c91-eadf-4481-a7cc-2374f09edae6">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Test run issue id                           :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="40" width="220" height="20" uuid="e091202a-6956-40cb-b20f-419c98f40fb0">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Test Run Summary                       :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="60" width="220" height="20" uuid="a6e9317b-3610-4a28-88ef-2e8d0067f4d4">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Test run description                      :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="80" width="220" height="20" uuid="34d54343-91d2-4948-bdec-7f49eb3728d7">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Execution started at                      :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="100" width="220" height="20" uuid="f97f38ed-3164-4dc8-adb7-f57ae3d0fe97">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Execution finished at                     : ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="0" width="230" height="20" uuid="76c81492-fafe-4f7e-ad92-03ced82e2cd6">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{projectName}]]></textFieldExpression>
+				</textField>
+				<textField hyperlinkType="Reference" hyperlinkTarget="Blank">
+					<reportElement x="249" y="20" width="230" height="20" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true" isItalic="true" isUnderline="false"/>
+						<paragraph lineSpacing="Double"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{issueId}]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA[$P{issueLink}]]></hyperlinkReferenceExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="40" width="230" height="20" uuid="0d61d7c2-076f-443d-a48e-96199769bb24">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{summary}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="60" width="230" height="20" uuid="3fe6b3b7-735c-437a-a8f5-7d331188841f">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{description}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="80" width="230" height="20" uuid="cb85f36a-49c5-489c-92e3-3d37c5433e9e">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{startedDate}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="140" width="230" height="20" uuid="c27fe269-2138-489a-b007-53e6734a309b">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{assignee}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="30" y="121" width="220" height="20" uuid="cd775235-e552-43e2-9f31-4a57b39cd599">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Executed by                                  : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="141" width="220" height="20" uuid="1ff91f47-779c-452c-8a0c-3372a4ac8640">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Assignee                                       : ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="120" width="230" height="20" uuid="23fd9f6b-9e55-4a24-b879-8cc8b350425d">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{executedBy}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="250" y="100" width="230" height="20" uuid="26c249b2-90cf-421a-9204-cb59790c7064">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement x="0" y="290" width="560" height="70" uuid="3ace91b5-cb82-40b3-a823-43a6f16f0be8">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<componentElement>
+						<reportElement x="10" y="10" width="540" height="60" uuid="2d28e04b-9d4d-4956-81b6-a20abcb74e50">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+							<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+							<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+							<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+						</reportElement>
+						<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+							<datasetRun subDataset="Dataset1" uuid="801ddc61-b6ed-4e37-a3bf-deef3cbbf810">
+								<dataSourceExpression><![CDATA[$P{BugList}]]></dataSourceExpression>
+							</datasetRun>
+							<jr:column width="150" uuid="e453ee63-cabd-448f-91f2-89526233467a">
+								<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+								<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+									<staticText>
+										<reportElement x="0" y="0" width="150" height="30" uuid="e599cfe9-e48d-498b-9315-6fecdf17a5d3"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial Black" size="12" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Test Case ID]]></text>
+									</staticText>
+								</jr:columnHeader>
+								<jr:detailCell style="Table_TD" height="30">
+									<textField hyperlinkType="Reference" hyperlinkTarget="Blank">
+										<reportElement x="0" y="0" width="150" height="30" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" isItalic="true" isUnderline="false"/>
+											<paragraph lineSpacing="Double"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{testCaseId}]]></textFieldExpression>
+										<hyperlinkReferenceExpression><![CDATA[$F{testCaseLink}]]></hyperlinkReferenceExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="180" uuid="f5e1be7a-4ba5-4cff-8cf3-3802f41136b0">
+								<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+								<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+									<staticText>
+										<reportElement x="0" y="0" width="180" height="30" uuid="55b16961-163d-4b83-a2e7-da8fcd4a1323"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial Black" size="12" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Test Execution Status]]></text>
+									</staticText>
+								</jr:columnHeader>
+								<jr:detailCell style="Table_TD" height="30">
+									<textField>
+										<reportElement x="0" y="0" width="180" height="30" uuid="3f34d7a4-d1e3-4994-90a4-d7d3bcccae23"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial" size="10"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{testStatus}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="200" uuid="ae0bb741-0d30-4e1c-8830-4846355ff441">
+								<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+								<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+									<staticText>
+										<reportElement x="0" y="0" width="200" height="30" uuid="902965c5-7bc0-4150-81e5-4003146b8ce6"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial Black" size="12" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Bugs Created]]></text>
+									</staticText>
+								</jr:columnHeader>
+								<jr:detailCell style="Table_TD" height="30">
+									<textField isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
+										<reportElement x="0" y="0" width="200" height="30" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" isItalic="true" isUnderline="false"/>
+											<paragraph lineSpacing="Double"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{linkedBugId}]]></textFieldExpression>
+										<hyperlinkReferenceExpression><![CDATA[$F{bugLink}]]></hyperlinkReferenceExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+						</jr:table>
+					</componentElement>
+				</frame>
+				<frame>
+					<reportElement x="10" y="166" width="530" height="114" uuid="bcbdb61a-efca-4491-9f18-c4a16b66a56f"/>
+					<staticText>
+						<reportElement x="20" y="4" width="220" height="20" uuid="f07a8bc0-5008-4dbe-929a-14c45998c41b">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font fontName="SansSerif" size="11" isBold="true" isItalic="false" isUnderline="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+						</textElement>
+						<text><![CDATA[Execution Summary]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="25" width="220" height="20" uuid="4dd55dc3-806d-43ed-a7ad-cef3128edb04">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<text><![CDATA[Total Test Cases                           : ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="46" width="220" height="20" uuid="38bdeb62-4cdd-4386-93e8-ab9126badaa2">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<text><![CDATA[Passed                                          : ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="67" width="220" height="20" uuid="c566d978-5c05-4d2b-be31-e1a07d36214d">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<text><![CDATA[Failed                                            : ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="88" width="220" height="20" uuid="3a48b3d5-2250-436e-bc70-809b5a6363d8">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<text><![CDATA[Bugs Reported                              : ]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="25" width="230" height="20" uuid="b98a3c82-1aa1-4326-8c12-82d714fca40c">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{totalTestCases}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="46" width="230" height="20" uuid="df862425-e95c-4140-9e9d-2c8411761f25">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{passCount}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="67" width="230" height="20" uuid="0d6d0762-bc23-488c-a72b-7aeba74c1b43">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{failCount}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="88" width="230" height="20" uuid="cb28021d-715c-4995-a280-7b0f74f1db19">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{bugCount}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>
