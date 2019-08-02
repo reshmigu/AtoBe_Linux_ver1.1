@@ -1,7 +1,9 @@
 FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
-RUN apk add ttf-dejavu
+RUN apt-get install ttf-mscorefonts-installer
+RUN fc-cache
+RUN fc-match Arial
 ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
