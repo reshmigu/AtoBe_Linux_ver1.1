@@ -7,7 +7,7 @@ ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
 ADD MailCredentials.xlsx /
 ADD testng.xml /
-RUN sh apt-get install -y unzip
+RUN gu install unzip
 ENTRYPOINT ["java", "-cp", ".:*", "com.test.AtoBeMainClass"]
 #CMD exec java -cp ./* org.testng.TestNG -testclass com.test.SampleProject
 #RUN java -cp "" org.testng.TestNG -testclass com.test.SampleProject
