@@ -2,12 +2,9 @@ FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
 
-ADD arial.ttf /
-# refresh system font cache
-RUN fc-cache -f -v
-
-# refresh matplotlib font cache
-RUN rm -fr ~/.cache/matplotlib
+RUN apk --no-cache add msttcorefonts-installer fontconfig && \
+    update-ms-fonts && \
+    fc-cache -f
 ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
