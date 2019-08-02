@@ -237,6 +237,9 @@ public class FullRun {
 			jasperReportDTO.setExecutedBy(response.getExecutedBy());
 			jasperReportDTO.setIssueIdLink(BASE_URL+"/browse/"+testExecutionid);
 			generateJasperReport.createReport(jasperReportDTO,jasperBugDTOList);
+			
+			mail test1 = new mail();
+			test1.mailm("report.pdf");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

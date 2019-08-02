@@ -22,7 +22,7 @@ public class GenerateJasperReport {
 			throws JRException, IOException {
 		// Compile jrxml file.
 		JasperReport jasperReport = JasperCompileManager
-				.compileReport("C:/Users/nasia.t/JaspersoftWorkspace/MyReports/IssueReport.jrxml");
+				.compileReport("IssueReport.jrxml");
 
 		// Parameters for report
 		int totalTestCases = 0;
@@ -79,8 +79,9 @@ public class GenerateJasperReport {
 		 */
 
 		// Export to PDF.
-		JasperExportManager.exportReportToPdfFile(jasperPrint, "C:/Users/nasia.t/Desktop/New folder/report.pdf");
-		File pdf = new File("C:/Users/nasia.t/Desktop/New folder/report.pdf");
+		JasperExportManager.exportReportToPdfFile(jasperPrint, "report.pdf");
+		//JasperExportManager.exportReportToHtmlFile( "report.pdf", "report.html");
+		File pdf = new File("report.html");
 		pdf.mkdirs();
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
