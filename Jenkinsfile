@@ -24,7 +24,7 @@ node (label: 'windows'){
         stage ('Run') {
 
        		 print "${params}"
-		 unzip( zipFile: 'restassured.zip',glob: 'test-output/**')
+		 unzip( zipFile: 'restassured.zip', glob: '**/test-output/*')
 
         	 if ("${params.modes}" == "DRY_RUN") {
        			 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} DRY_RUN"
