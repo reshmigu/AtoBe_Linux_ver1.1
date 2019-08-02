@@ -81,7 +81,7 @@ public class GenerateJasperReport {
 		// Export to PDF.
 		JasperExportManager.exportReportToPdfFile(jasperPrint, "report.pdf");
 		//JasperExportManager.exportReportToHtmlFile( "report.pdf", "report.html");
-		File pdf = new File("report.html");
+		File pdf = new File("report.pdf");
 		pdf.mkdirs();
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
