@@ -33,8 +33,9 @@ node (label: 'windows'){
       	     else if("${params.modes}" == "FULL_RUN") {
 	  	 		 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} FULL_RUN"
       	     }
-	   bat "docker container export -o restassured.tar restassured"
-	   bat "'%~dp0tar' xvf .\restassured.tar test-output/emailable-report.html"	
+	   bat "docker container export -o restassured.zip restassured"
+	   bat 'unzip restassured.zip'
+	  	
          env.ForEmailPlugin = env.WORKSPACE
         emailext mimeType: 'text/html',
 	attachLog :true,
