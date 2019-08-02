@@ -34,7 +34,8 @@ node (label: 'windows'){
 	  	 		 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} FULL_RUN"
       	     }
 	   bat "docker container export -o restassured.zip restassured"
-	   bat 'unzip restassured.zip'
+	   bat "systeminfo"
+	   bat "unzip restassured.zip"
 	  	
          env.ForEmailPlugin = env.WORKSPACE
         emailext mimeType: 'text/html',
