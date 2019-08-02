@@ -24,6 +24,7 @@ node (label: 'windows'){
         stage ('Run') {
 
        		 print "${params}"
+		print 'dir'
 		 unzip( zipFile: 'restassured.zip', glob: '**/test-output/*')
 
         	 if ("${params.modes}" == "DRY_RUN") {
