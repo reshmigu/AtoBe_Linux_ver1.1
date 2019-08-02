@@ -1,7 +1,7 @@
 FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
-FROM alpine:3.7
+
 RUN apk --no-cache add msttcorefonts-installer fontconfig && \
     update-ms-fonts && \
     fc-cache -f
