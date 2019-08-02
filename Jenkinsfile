@@ -3,7 +3,7 @@ node (label: 'windows'){
     withMaven(maven:'maven') {
 
         stage('Checkout') {
-            git url: 'https://github.com/reshmigu/AtoBe_ver1.2.git', credentialsId: 'master', branch: 'master'
+            git url: 'https://github.com/reshmigu/AtoBe_ver1.3.git', credentialsId: 'master', branch: 'master'
         }
 
 		stage('Build') {
