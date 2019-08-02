@@ -76,7 +76,7 @@
 	<detail>
 		<band height="416" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="560" height="360" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
+				<reportElement x="0" y="0" width="560" height="416" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
 				<staticText>
 					<reportElement x="30" y="0" width="220" height="20" uuid="7f8ddbc5-b1ec-43da-b19b-2b21fe628b64">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
