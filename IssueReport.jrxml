@@ -67,14 +67,14 @@
 			<staticText>
 				<reportElement x="1" y="0" width="559" height="40" uuid="1f510e13-1ff0-4900-a529-8480adb63f14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="16" isBold="true" isItalic="false" isUnderline="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					<font fontName="Arial" size="16" isBold="true" isItalic="false" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[JIRA-Xray Test Execution Report]]></text>
 			</staticText>
 		</band>
 	</title>
 	<detail>
-		<band height="374" splitType="Stretch">
+		<band height="416" splitType="Stretch">
 			<frame>
 				<reportElement x="0" y="0" width="560" height="360" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
 				<staticText>
@@ -226,7 +226,7 @@
 					<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
 				</textField>
 				<frame>
-					<reportElement x="0" y="290" width="560" height="70" uuid="3ace91b5-cb82-40b3-a823-43a6f16f0be8">
+					<reportElement x="0" y="290" width="560" height="120" uuid="3ace91b5-cb82-40b3-a823-43a6f16f0be8">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					</reportElement>
@@ -310,6 +310,10 @@
 							</jr:column>
 						</jr:table>
 					</componentElement>
+					<textField>
+						<reportElement x="15" y="80" width="530" height="30" uuid="d4b14871-0475-4838-87d5-7d17d873ee21"/>
+						<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement x="10" y="166" width="530" height="114" uuid="bcbdb61a-efca-4491-9f18-c4a16b66a56f"/>
@@ -318,7 +322,7 @@
 							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="SansSerif" size="11" isBold="true" isItalic="false" isUnderline="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+							<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="true"/>
 						</textElement>
 						<text><![CDATA[Execution Summary]]></text>
 					</staticText>
