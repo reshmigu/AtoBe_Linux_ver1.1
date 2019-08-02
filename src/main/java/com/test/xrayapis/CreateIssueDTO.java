@@ -6,6 +6,13 @@ public class CreateIssueDTO {
 	private String name;
 	private String description;
 	private String summary;
+	private String testKey;
+	public String getTestKey() {
+		return testKey;
+	}
+	public void setTestKey(String testKey) {
+		this.testKey = testKey;
+	}
 	public String getKey() {
 		return key;
 	}

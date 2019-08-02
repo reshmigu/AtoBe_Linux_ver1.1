@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -30,14 +31,17 @@ public class Run {
 	String testExecutionid;
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
+	CreateIssueDTO createIssueDTO = null;
 
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
-		CreateIssueDTO createIssueDTO=new CreateIssueDTO();
-		createIssueDTO.setDescription("AtoBe Automated Test Run");
+		createIssueDTO = new CreateIssueDTO();
+		LocalDate date=LocalDate.now();
+		createIssueDTO.setDescription("AtoBe Automated Test Run "+ date.toString());
 		createIssueDTO.setKey("TP");
 		createIssueDTO.setName("Test Execution");
-		createIssueDTO.setSummary("AtoBe Test Run");		testExecutionid = apiIntegration.createIssue(createIssueDTO);
+		createIssueDTO.setSummary("AtoBe Test Run "+ date.toString());
+		testExecutionid = apiIntegration.createIssue(createIssueDTO);
 		Assert.assertNotNull(testExecutionid);
 	}
 

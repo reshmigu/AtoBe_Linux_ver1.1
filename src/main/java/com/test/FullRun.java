@@ -4,19 +4,28 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 import com.test.xrayapis.CreateIssueDTO;
+import com.test.xrayapis.GenerateJasperReport;
+import com.test.xrayapis.JasperBugDTO;
+import com.test.xrayapis.JasperReportDTO;
+import com.test.xrayapis.ResponseDTO;
 import com.test.xrayapis.TestExecution;
 import com.test.xrayapis.TestRun;
 import com.test.xrayapis.XrayAPIIntegration;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import net.sf.jasperreports.engine.JRException;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -30,13 +39,18 @@ public class FullRun {
 	XrayAPIIntegration apiIntegration = new XrayAPIIntegration();
 	XrayReport report = new XrayReport();
 	CreateIssueDTO createIssueDTO = null;
+	CreateIssueDTO createBugDTO = null;
+	private static final ResourceBundle rb = ResourceBundle.getBundle("application");
+	private static final String BASE_URL = rb.getString("baseUrl");
+	private static final String project_Name = rb.getString("project.name");
 	@Test(priority = 0)
 	public void createIssue() throws URISyntaxException {
-		createIssueDTO=new CreateIssueDTO();
-		createIssueDTO.setDescription("AtoBe Automated Test Run");
+		createIssueDTO = new CreateIssueDTO();
+		LocalDate date=LocalDate.now();
+		createIssueDTO.setDescription("AtoBe Automated Test Run "+ date.toString());
 		createIssueDTO.setKey("TP");
 		createIssueDTO.setName("Test Execution");
-		createIssueDTO.setSummary("AtoBe Test Run");
+		createIssueDTO.setSummary("AtoBe Test Run "+ date.toString());
 		testExecutionid = apiIntegration.createIssue(createIssueDTO);
 		Assert.assertNotNull(testExecutionid);
 
@@ -74,7 +88,7 @@ public class FullRun {
 
 		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")) {
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
-			}
+		}
 
 		assertEquals(200, response.getStatusCode());
 
@@ -128,7 +142,7 @@ public class FullRun {
 		TestRun testRun = apiIntegration.getTestRun("TP-4", testExecutionid);
 		if (response.getStatusCode() == 400 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
-		else if (response.getStatusCode() ==200 && !testRun.getStatus().equals("FAIL")) {
+		else if (response.getStatusCode() == 200 && !testRun.getStatus().equals("FAIL")) {
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
 		}
 		assertEquals(response.getStatusCode(), 200);
@@ -177,19 +191,52 @@ public class FullRun {
 	}
 
 	@AfterSuite
-	public void afterAllTest() {
+	public void afterAllTest() throws JRException, URISyntaxException {
 		List<TestExecution> testExecution = apiIntegration.getTestExecution(testExecutionid);
-		testExecution.stream().filter(n -> n.getStatus().equalsIgnoreCase("FAIL")).forEach(n -> {
+	
+		List<JasperBugDTO> jasperBugDTOList=new ArrayList<>();
+		testExecution.forEach(a->{
+			JasperBugDTO jasperBugDTO=new JasperBugDTO();
+			if(a.getStatus().equalsIgnoreCase("FAIL")) {
 			try {
-				apiIntegration.createIssueBug("TP",n.getKey());
+				createBugDTO = new CreateIssueDTO();
+				LocalDate date=LocalDate.now();
+				createBugDTO.setDescription("AtoBe bug description "+ date.toString());
+				createBugDTO.setKey("TP");
+				createBugDTO.setTestKey(a.getKey());
+				createBugDTO.setName("Bug");
+				createBugDTO.setSummary("Defect for "+testExecutionid);
+				ResponseDTO response=apiIntegration.createIssueBug(createBugDTO);
+				
+				jasperBugDTO.setLinkedBugId(response.getKey());
+				jasperBugDTO.setBugLink(BASE_URL+"/browse/"+response.getKey());
+				
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
+			}
+			jasperBugDTO.setTestStatus(a.getStatus());
+			jasperBugDTO.setTestCaseId(a.getKey());
+			jasperBugDTO.setTestCaseLink(BASE_URL+"/browse/"+a.getKey());
+			jasperBugDTOList.add(jasperBugDTO);
 		});
-
 		try {
+			TestRun response=apiIntegration.getTestRun(testExecution.get(0).getKey(), testExecutionid);
+			GenerateJasperReport generateJasperReport= new GenerateJasperReport();
 			report.sendReportAsExcel(testExecution, testExecutionid);
+			JasperReportDTO jasperReportDTO = new JasperReportDTO();
+			jasperReportDTO.setProjectName(project_Name);
+			jasperReportDTO.setIssueId(testExecutionid);
+			jasperReportDTO.setDescription(createIssueDTO.getDescription());
+			jasperReportDTO.setSummary(createIssueDTO.getSummary());
+			jasperReportDTO.setStartedDate(response.getStartedOn());
+			jasperReportDTO.setEndDate(response.getFinishedOn());
+			jasperReportDTO.setJasperBugDTO(jasperBugDTOList);
+			jasperReportDTO.setAssignee("assignee");
+			jasperReportDTO.setExecutedBy(response.getExecutedBy());
+			jasperReportDTO.setIssueIdLink(BASE_URL+"/browse/"+testExecutionid);
+			generateJasperReport.createReport(jasperReportDTO,jasperBugDTOList);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

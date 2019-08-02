@@ -81,11 +81,11 @@ public class XrayAPIIntegration {
 
 	}
 
-	public ResponseDTO createIssueBug(String projectKey,String testCaseKey) throws URISyntaxException {
+	public ResponseDTO createIssueBug(CreateIssueDTO createIssueDTO) throws URISyntaxException {
 		String createIssueUrl = BASE_URL + CREATE_ISSUE_URL;
 		URIBuilder b = new URIBuilder(createIssueUrl);
 		URI u = b.build();
-		String test =String.format( "{\"fields\":{\"project\":{\"key\":\"%s\" },\"summary\":\"test bug summary\",\"description\":\"test bug description\",\"issuetype\":{\"name\":\"Bug\"}},\"update\":{\"issuelinks\":[{\"add\":{\"type\":{\"name\":\"Blocks\",\"inward\":\"is blocked by\",\"outward\":\"blocks\"},\"outwardIssue\":{\"key\":\"%s\" }}}]}}",projectKey,testCaseKey);
+		String test =String.format( "{\"fields\":{\"project\":{\"key\":\"%s\" },\"summary\":\"%s\",\"description\":\"%s\",\"issuetype\":{\"name\":\"%s\"}},\"update\":{\"issuelinks\":[{\"add\":{\"type\":{\"name\":\"Blocks\",\"inward\":\"is blocked by\",\"outward\":\"blocks\"},\"outwardIssue\":{\"key\":\"%s\" }}}]}}",createIssueDTO.getKey(),createIssueDTO.getSummary(),createIssueDTO.getDescription(),createIssueDTO.getName(),createIssueDTO.getTestKey());
 		RequestSpecification request = RestAssured.given().auth().preemptive().basic("thinkpalm", "Think@123");
 		request.contentType("application/json");
 		request.body(test);
