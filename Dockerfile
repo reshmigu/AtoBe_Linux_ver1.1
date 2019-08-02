@@ -1,15 +1,7 @@
 FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
-RUN apt-get update \
- && apt-get install --assume-yes apt-utils \
- && apt-get install --assume-yes software-properties-common \
- && apt-get install --assume-yes dbus \
- && apt-get install --assume-yes cgmanager \
- && apt-get install --assume-yes glib-networking \
- && apt-get install --assume-yes libnih-dbus-dev \
- && apt-get install --assume-yes dconf-cli \
- && apt-get install --assume-yes fontconfig
+RUN apk add ttf-dejavu
 ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
