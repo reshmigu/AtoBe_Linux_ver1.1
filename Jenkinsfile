@@ -24,6 +24,8 @@ node (label: 'windows'){
         stage ('Run') {
 
        		 print "${params}"
+		 unzip( zipFile: 'restassured.zip')
+
         	 if ("${params.modes}" == "DRY_RUN") {
        			 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} DRY_RUN"
       	     }
@@ -34,7 +36,6 @@ node (label: 'windows'){
 	  	 		 bat "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} FULL_RUN"
       	     }
 	   bat "docker container export -o restassured.zip restassured"
-	 unzip( zipFile: 'restassured.zip')
          env.ForEmailPlugin = env.WORKSPACE
         emailext mimeType: 'text/html',
 	attachLog :true,
