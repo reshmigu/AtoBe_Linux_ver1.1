@@ -1,11 +1,9 @@
 FROM openjdk:8u171-jdk-alpine3.8
 MAINTAINER Arun Johnson <arun.j@thinkpalm.com>
 RUN mkdir testassured
-# Copy local fonts in an indexable place
-COPY /srv/fonts ~/.fonts
-
-# Update font cache
-RUN fc-cache -f -v
+RUN apk --no-cache add msttcorefonts-installer fontconfig && \
+    update-ms-fonts && \
+    fc-cache -f
 ADD target/restassured.jar restassured.jar
 ADD testng-6.11.jar /
 ADD jcommander-1.72.jar /
