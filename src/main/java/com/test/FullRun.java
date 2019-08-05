@@ -232,8 +232,8 @@ public class FullRun {
 			jasperReportDTO.setIssueId(testExecutionid);
 			jasperReportDTO.setDescription(createIssueDTO.getDescription());
 			jasperReportDTO.setSummary(createIssueDTO.getSummary());
-			jasperReportDTO.setStartedDate(response.getStartedOn());
-			jasperReportDTO.setEndDate(response.getFinishedOn());
+			jasperReportDTO.setStartedDate(testExecution.get(0).getStartedOn());
+			jasperReportDTO.setEndDate(testExecution.get(0).getFinishedOn());
 			jasperReportDTO.setJasperBugDTO(jasperBugDTOList);
 			jasperReportDTO.setAssignee("assignee");
 			jasperReportDTO.setExecutedBy(response.getExecutedBy());
