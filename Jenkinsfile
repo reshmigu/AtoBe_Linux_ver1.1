@@ -46,7 +46,7 @@ node (label: 'slave1') {
 		compressLog : true,
         body: '${FILE, path="test-output/emailable-report.html"}',
         subject: subject,	
-        to: 'reshmi.g@thinkpalm.com,arun.j@thinkpalm.com,dhananjaya.k@thinkpalm.com'
+        to: 'reshmi.g@thinkpalm.com'
 		
         }
 
