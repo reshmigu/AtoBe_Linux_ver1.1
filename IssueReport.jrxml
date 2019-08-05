@@ -67,7 +67,7 @@
 			<staticText>
 				<reportElement x="1" y="0" width="559" height="40" uuid="1f510e13-1ff0-4900-a529-8480adb63f14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="16" isBold="true" isItalic="false" isUnderline="true"/>
+					<font fontName="DejaVu Sans" size="16" isBold="true" isItalic="false" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[JIRA-Xray Test Execution Report]]></text>
 			</staticText>
@@ -136,7 +136,7 @@
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="10"/>
+						<font fontName="DejaVu Sans" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{projectName}]]></textFieldExpression>
 				</textField>
@@ -247,7 +247,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="150" height="30" uuid="e599cfe9-e48d-498b-9315-6fecdf17a5d3"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="Arial Black" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="12" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Test Case ID]]></text>
 									</staticText>
@@ -270,7 +270,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="180" height="30" uuid="55b16961-163d-4b83-a2e7-da8fcd4a1323"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="Arial Black" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="12" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Test Execution Status]]></text>
 									</staticText>
@@ -279,7 +279,7 @@
 									<textField>
 										<reportElement x="0" y="0" width="180" height="30" uuid="3f34d7a4-d1e3-4994-90a4-d7d3bcccae23"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="Arial" size="10"/>
+											<font fontName="DejaVu Sans" size="10"/>
 										</textElement>
 										<textFieldExpression><![CDATA[$F{testStatus}]]></textFieldExpression>
 									</textField>
@@ -291,7 +291,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="200" height="30" uuid="902965c5-7bc0-4150-81e5-4003146b8ce6"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="Arial Black" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="12" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Bugs Created]]></text>
 									</staticText>
@@ -322,7 +322,7 @@
 							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="true"/>
+							<font fontName="DejaVu Sans" size="11" isBold="true" isItalic="false" isUnderline="true"/>
 						</textElement>
 						<text><![CDATA[Execution Summary]]></text>
 					</staticText>
