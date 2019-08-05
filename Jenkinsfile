@@ -23,8 +23,6 @@ node (label: 'slave1') {
 		
 			print "${params}"
 			
-			sh "dir"
-			
 			if ("${params.modes}" == "DRY_RUN") {
        			 sh "docker run -p 8081:8081 -h restassured --name restassured --net host -m=500m restassured:${env.version} DRY_RUN"
       	     }
@@ -48,7 +46,7 @@ node (label: 'slave1') {
 		compressLog : true,
         body: '${FILE, path="test-output/emailable-report.html"}',
         subject: subject,	
-        to: 'reshmi.g@thinkpalm.com'
+        to: 'reshmi.g@thinkpalm.com,arun.j@thinkpalm.com'
 		
         }
 
