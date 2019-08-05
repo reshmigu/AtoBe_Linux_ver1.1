@@ -6,6 +6,12 @@ import java.util.List;
 
 public class JasperReportDTO {
 
+	public String getXrayLink() {
+		return xrayLink;
+	}
+	public void setXrayLink(String xrayLink) {
+		this.xrayLink = xrayLink;
+	}
 	private String projectName;
 	private String issueId;
 	private String issueIdLink;
@@ -15,6 +21,7 @@ public class JasperReportDTO {
 	private String assignee;
 	private Date startedDate;
 	private Date endDate;
+	private String xrayLink;
 	private List<JasperBugDTO> jasperBugDTO;
 	
 	

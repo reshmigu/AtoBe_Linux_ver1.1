@@ -46,6 +46,7 @@ public class GenerateJasperReport {
 		parameters.put("passCount", passCount);
 		parameters.put("failCount", failCount);
 		parameters.put("bugCount", bugCount);
+		parameters.put("xrayLink", jasperReportDTO.getXrayLink());
 		parameters.put("issueLink", jasperReportDTO.getIssueIdLink());
 
 

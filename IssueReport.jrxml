@@ -55,6 +55,7 @@
 	<parameter name="failCount" class="java.lang.Integer"/>
 	<parameter name="bugCount" class="java.lang.Integer"/>
 	<parameter name="issueLink" class="java.lang.String"/>
+	<parameter name="xrayLink" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -74,9 +75,9 @@
 		</band>
 	</title>
 	<detail>
-		<band height="416" splitType="Stretch">
+		<band height="370" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="560" height="416" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
+				<reportElement x="0" y="0" width="560" height="370" uuid="b5ead534-cc6d-482a-ae42-b3e604dad463"/>
 				<staticText>
 					<reportElement x="30" y="0" width="220" height="20" uuid="7f8ddbc5-b1ec-43da-b19b-2b21fe628b64">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -93,7 +94,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[Test run issue id                           :]]></text>
+					<text><![CDATA[Test Run Issue Id                         :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="30" y="40" width="220" height="20" uuid="e091202a-6956-40cb-b20f-419c98f40fb0">
@@ -111,7 +112,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[Test run description                      :]]></text>
+					<text><![CDATA[Test Run Description                    :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="30" y="80" width="220" height="20" uuid="34d54343-91d2-4948-bdec-7f49eb3728d7">
@@ -120,7 +121,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[Execution started at                      :]]></text>
+					<text><![CDATA[Execution Started At                     :]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="30" y="100" width="220" height="20" uuid="f97f38ed-3164-4dc8-adb7-f57ae3d0fe97">
@@ -129,7 +130,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[Execution finished at                     : ]]></text>
+					<text><![CDATA[Execution Finished At                   : ]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement x="250" y="0" width="230" height="20" uuid="76c81492-fafe-4f7e-ad92-03ced82e2cd6">
@@ -180,15 +181,6 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{startedDate}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="250" y="140" width="230" height="20" uuid="c27fe269-2138-489a-b007-53e6734a309b">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
-					<textElement verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$P{assignee}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement x="30" y="121" width="220" height="20" uuid="cd775235-e552-43e2-9f31-4a57b39cd599">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -196,16 +188,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[Executed by                                  : ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="30" y="141" width="220" height="20" uuid="1ff91f47-779c-452c-8a0c-3372a4ac8640">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
-					<textElement verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-					<text><![CDATA[Assignee                                       : ]]></text>
+					<text><![CDATA[Executed By                                 : ]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement x="250" y="120" width="230" height="20" uuid="23fd9f6b-9e55-4a24-b879-8cc8b350425d">
@@ -226,7 +209,7 @@
 					<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
 				</textField>
 				<frame>
-					<reportElement x="0" y="290" width="560" height="120" uuid="3ace91b5-cb82-40b3-a823-43a6f16f0be8">
+					<reportElement x="0" y="290" width="560" height="70" isPrintWhenDetailOverflows="true" uuid="3ace91b5-cb82-40b3-a823-43a6f16f0be8">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					</reportElement>
@@ -310,10 +293,6 @@
 							</jr:column>
 						</jr:table>
 					</componentElement>
-					<textField>
-						<reportElement x="15" y="80" width="530" height="30" uuid="d4b14871-0475-4838-87d5-7d17d873ee21"/>
-						<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
-					</textField>
 				</frame>
 				<frame>
 					<reportElement x="10" y="166" width="530" height="114" uuid="bcbdb61a-efca-4491-9f18-c4a16b66a56f"/>
@@ -333,7 +312,7 @@
 						<textElement textAlignment="Left" verticalAlignment="Middle">
 							<font size="10"/>
 						</textElement>
-						<text><![CDATA[Total Test Cases                           : ]]></text>
+						<text><![CDATA[Total Test Cases                          : ]]></text>
 					</staticText>
 					<staticText>
 						<reportElement x="20" y="46" width="220" height="20" uuid="38bdeb62-4cdd-4386-93e8-ab9126badaa2">
@@ -403,4 +382,23 @@
 			</frame>
 		</band>
 	</detail>
+	<summary>
+		<band height="60">
+			<frame>
+				<reportElement x="2" y="10" width="568" height="40" uuid="1b794295-3d42-4067-9115-da45b9273244"/>
+				<textField hyperlinkType="Reference" hyperlinkTarget="Blank">
+					<reportElement x="10" y="2" width="533" height="30" isPrintWhenDetailOverflows="true" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true" isItalic="true" isUnderline="false"/>
+						<paragraph lineSpacing="Double"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Link to Xray Report"]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA[$P{xrayLink}]]></hyperlinkReferenceExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
 </jasperReport>
