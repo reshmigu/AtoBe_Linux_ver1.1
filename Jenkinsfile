@@ -38,15 +38,15 @@ node (label: 'slave1') {
         def config = [:]
 		def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}!"      
         // Attach buildlog when the build is not successfull
-        def attachLog = (config.attachLog != null) ? config.attachLog : (currentBuild.currentResult != "SUCCESS")
+       // def attachLog = (config.attachLog != null) ? config.attachLog : (currentBuild.currentResult != "SUCCESS")
 		
         env.ForEmailPlugin = env.WORKSPACE
         emailext mimeType: 'text/html',
-		attachLog :attachLog,
+		attachLog :true,
 		compressLog : true,
         body: '${FILE, path="test-output/emailable-report.html"}',
         subject: subject,	
-        to: 'reshmi.g@thinkpalm.com,arun.j@thinkpalm.com'
+        to: 'reshmi.g@thinkpalm.com,arun.j@thinkpalm.com,dhananjaya.k@thinkpalm.com'
 		
         }
 
