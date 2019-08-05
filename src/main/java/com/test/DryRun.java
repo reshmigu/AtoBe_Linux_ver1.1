@@ -128,10 +128,10 @@ public class DryRun {
 
 	}
 
-	@Test(priority = 3)
+	/*@Test(priority = 3)
 	public void mailsend() {
 		mail test1 = new mail();
 		test1.mailm("test-output//emailable-report.html");
 
-	}
+	}*/
 }

@@ -226,7 +226,7 @@ public class FullRun {
 		try {
 			TestRun response=apiIntegration.getTestRun(testExecution.get(0).getKey(), testExecutionid);
 			GenerateJasperReport generateJasperReport= new GenerateJasperReport();
-			report.sendReportAsExcel(testExecution, testExecutionid);
+			//report.sendReportAsExcel(testExecution, testExecutionid);
 			JasperReportDTO jasperReportDTO = new JasperReportDTO();
 			jasperReportDTO.setProjectName(project_Name);
 			jasperReportDTO.setIssueId(testExecutionid);
