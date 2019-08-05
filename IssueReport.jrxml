@@ -230,7 +230,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="150" height="30" uuid="e599cfe9-e48d-498b-9315-6fecdf17a5d3"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="DejaVu Sans" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="10" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Test Case ID]]></text>
 									</staticText>
@@ -253,7 +253,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="180" height="30" uuid="55b16961-163d-4b83-a2e7-da8fcd4a1323"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="DejaVu Sans" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="10" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Test Execution Status]]></text>
 									</staticText>
@@ -274,7 +274,7 @@
 									<staticText>
 										<reportElement x="0" y="0" width="200" height="30" uuid="902965c5-7bc0-4150-81e5-4003146b8ce6"/>
 										<textElement textAlignment="Center" verticalAlignment="Middle">
-											<font fontName="DejaVu Sans" size="12" isBold="true"/>
+											<font fontName="DejaVu Sans" size="10" isBold="true"/>
 										</textElement>
 										<text><![CDATA[Bugs Created]]></text>
 									</staticText>
@@ -387,7 +387,7 @@
 			<frame>
 				<reportElement x="2" y="10" width="568" height="40" uuid="1b794295-3d42-4067-9115-da45b9273244"/>
 				<textField hyperlinkType="Reference" hyperlinkTarget="Blank">
-					<reportElement x="10" y="2" width="533" height="30" isPrintWhenDetailOverflows="true" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32">
+					<reportElement x="240" y="2" width="303" height="30" isPrintWhenDetailOverflows="true" forecolor="#688BF2" uuid="63126d08-4ca5-4026-824f-4112b2bd6a32">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
@@ -395,9 +395,16 @@
 						<font isBold="true" isItalic="true" isUnderline="false"/>
 						<paragraph lineSpacing="Double"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Link to Xray Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Click Here"]]></textFieldExpression>
 					<hyperlinkReferenceExpression><![CDATA[$P{xrayLink}]]></hyperlinkReferenceExpression>
 				</textField>
+				<staticText>
+					<reportElement x="10" y="2" width="190" height="30" uuid="e1e513d3-1a74-4a32-9388-d37573560869">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Link to Xray Report                              :]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</summary>
