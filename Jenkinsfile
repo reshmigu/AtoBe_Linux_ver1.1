@@ -1,4 +1,4 @@
-node (label: 'slave 1') {
+node (label: 'slave1') {
 
     withMaven(maven:'maven') {
 
