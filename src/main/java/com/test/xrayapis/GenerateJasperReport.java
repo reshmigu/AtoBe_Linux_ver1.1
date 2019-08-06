@@ -15,7 +15,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class GenerateJasperReport {
 
@@ -88,7 +88,7 @@ public class GenerateJasperReport {
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
 		System.out.println("Done!");
-		System.out.println(new Date()+" ************* ");
+		System.out.println(LocalDateTime.now()+" ************* ");
 	}
 
 }
