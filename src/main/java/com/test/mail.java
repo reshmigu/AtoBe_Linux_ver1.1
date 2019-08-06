@@ -46,7 +46,7 @@ public class mail {
 
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress("reshmi.g@thinkpalm.com"));
-				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("nasia.t@thinkpalm.com"));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("reshmi.g@thinkpalm.com"));
 				message.setSubject("AtoBe Xray Execution Report");
 				BodyPart messageBodyPart1 = new MimeBodyPart();
 				messageBodyPart1.setText("Please find attached Xray Execution Sample Report.\nThanks\nReshmi");
