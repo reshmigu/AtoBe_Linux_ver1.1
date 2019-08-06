@@ -87,6 +87,7 @@ public class GenerateJasperReport {
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
 		System.out.println("Done!");
+		System.out.println(new Date()+" ************* ");
 	}
 
 }
