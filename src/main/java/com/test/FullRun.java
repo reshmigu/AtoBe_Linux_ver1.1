@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Date;
+
 
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -232,7 +234,10 @@ public class FullRun {
 			jasperReportDTO.setIssueId(testExecutionid);
 			jasperReportDTO.setDescription(createIssueDTO.getDescription());
 			jasperReportDTO.setSummary(createIssueDTO.getSummary());
+			LOGGER.info("TEST EXECUTION TIME " +testExecution.get(0).getStartedOn());
 			jasperReportDTO.setStartedDate(testExecution.get(0).getStartedOn());
+			LOGGER.info("JASPER REPORT TIME" +jasperReportDTO.getStartedDate());
+			LOGGER.info("SYSTEM TIME" +new Date());
 			jasperReportDTO.setEndDate(testExecution.get(0).getFinishedOn());
 			jasperReportDTO.setJasperBugDTO(jasperBugDTOList);
 			jasperReportDTO.setAssignee("assignee");
