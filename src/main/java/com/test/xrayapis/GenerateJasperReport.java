@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class GenerateJasperReport {
 
@@ -88,7 +89,7 @@ public class GenerateJasperReport {
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
 		System.out.println("Done!");
-		System.out.println(LocalDateTime.now()+" ************* ");
+		System.out.println(LocalDateTime.now(ZoneId.of("Asia/Kolkata"))+" ************* ");
 	}
 
 }
