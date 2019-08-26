@@ -1,0 +1,180 @@
+ <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Security Quotient mailer</title>
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+</head>
+
+<body style="margin: 0px;padding: 0px">
+<h2 align="middle">JIRA X-RAY TEST EXECUTION REPORT</h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: #f1f5f6; padding:27px 0px; height: 100%">
+	  <tbody>
+		<tr>
+		  <td>
+			  <table width="600" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto">
+				  <tbody>
+					<tr>
+					  <td>					   
+						Project Name:
+					</td>
+					 <td>					   
+						$projectName
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Test Run Issue Id:
+					</td>
+					 <td>					   
+					<a href="$issueLink">	$issueId</a>
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Test Run Summary:
+					</td>
+					 <td>					   
+						$summary
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Test Run Description:
+					</td>
+					 <td>					   
+						$description
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Execution Started At:
+					</td>
+					 <td>					   
+						$startedDate
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Execution Finished At:
+					</td>
+					 <td>					   
+						$endDate
+					</td>
+					</tr>
+					
+					<tr>
+					  <td>					   
+						Executed By:
+					</td>
+					 <td>					   
+						$executedBy
+					</td>
+					</tr>
+				  </tbody>
+			</table>
+			
+		<h4>Execution Summary</h4>
+		<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto">
+				  <tbody>
+					<tr>
+					  <td>					   
+						Total test cases:
+					</td>
+					 <td>					   
+						$totalTestCases
+					</td>
+					</tr>
+					
+						<tr>
+					  <td>					   
+						Passed:
+					</td>
+					 <td>					   
+						$passCount
+					</td>
+					</tr>
+					
+						<tr>
+					  <td>					   
+						Failed:
+					</td>
+					 <td>					   
+						$failCount
+					</td>
+					</tr>
+					
+						<tr>
+					  <td>					   
+						Bugs Reported:
+					</td>
+					 <td>					   
+						$bugCount
+					</td>
+					</tr>
+					
+					 </tbody>
+			</table>
+					<br><br>
+					<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto">
+				  <tbody>
+				  <tr>
+				  <td>
+				  Test Case Id
+				  </td>
+				   <td>
+				  Test Execution Status
+				  </td>
+				   <td>
+				  Bugs Created
+				  </td>
+				  
+				  </tr>
+				  
+				  #foreach( $bug in $jasperBugDTOList )
+					<tr>
+					  <td>					   
+						<a href="$bug.testCaseLink">$bug.testCaseId</a>
+					</td>
+					 <td>					   
+						$bug.testStatus
+					</td>
+					#if( !$bug.linkedBugId  )
+					 <td>					   
+						
+					</td>
+					#else
+					<td>					   
+					<a href="$bug.bugLink">$bug.linkedBugId</a>
+					</td>
+					#end
+					</tr>
+					#end
+			 </tbody>
+			</table>
+			<br>
+			<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto">
+				  <tbody>
+				  <tr>
+					  <td>					   
+						Link to Xray Report:
+					</td>
+					 <td>					   
+						<a href="$xrayLink">Click here</a>
+					</td>
+					</tr>
+				  </tbody>
+				  </table>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+
+</body>
+</html>
+ 
