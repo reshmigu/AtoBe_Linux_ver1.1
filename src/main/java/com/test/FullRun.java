@@ -89,14 +89,14 @@ public class FullRun {
 		LOGGER.info("Does Reponse contains 'ABC'? :" + response.asString().contains("ABC"));
 
 		TestRun testRun = apiIntegration.getTestRun("TP-2", testExecutionid);
-		if (response.getStatusCode() == 200 && !testRun.getStatus().equals("PASS"))
+		if (response.getStatusCode() == 400 && !testRun.getStatus().equals("PASS"))
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "PASS");
 
-		else if (response.getStatusCode() != 200 && !testRun.getStatus().equals("FAIL")) {
+		else if (response.getStatusCode() != 400 && !testRun.getStatus().equals("FAIL")) {
 			apiIntegration.updateTestCaseStatus(testRun.getId(), "FAIL");
 		}
 
-		assertEquals(200, response.getStatusCode());
+		assertEquals(400, response.getStatusCode());
 
 	}
 
